@@ -123,7 +123,6 @@ httools_static: MIT License
     Source not required, however, respective source is provided:
     https://github.com/capntrips/HashtreePatcher
 
-
 ## Optional Binary Licenses:
 
 mkbootfs, mkbootimg: Apache License 2.0

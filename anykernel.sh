@@ -30,6 +30,16 @@ patch_vbmeta_flag=auto;
 # import functions/variables and setup patching - see for reference (DO NOT REMOVE)
 . tools/ak3-core.sh;
 
+ui_print "[INFO] Verifying kernel image"
+"$BIN/busybox" sha256sum -cs Image.zst.sha256 \
+  || abort "[ERR] SHA256 mismatch"
+
+ui_print "[INFO] Unpacking kernel image"
+"$BIN/zstd" -d -q --no-progress -o "$AKHOME/Image" "$AKHOME/Image.zst" \
+  || abort "[ERR] Decompress failed"
+
+ui_print "[SUCCESS] Unpacked kernel successfully"
+
 # boot install
 split_boot
 if [ -f "split_img/ramdisk.cpio" ]; then
